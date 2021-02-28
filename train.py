@@ -6,6 +6,7 @@ from sklearn.feature_selection import SelectKBest
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import plot_confusion_matrix
+from sklearn import preprocessing
 import warnings
 import pickle
 warnings.filterwarnings("ignore")
@@ -18,6 +19,16 @@ data = np.array(df)
 df_features = df[['birth_year', 'country', 'city', 'plan', 'num_contacts',
        'User_gain_usd', 'Transaction_per_user',
        'notification_received', 'target']]
+# initializing encoders for each column
+le_target = preprocessing.LabelEncoder()
+le_country = preprocessing.LabelEncoder() 
+le_city = preprocessing.LabelEncoder() 
+le_plan = preprocessing.LabelEncoder() 
+# getting the labels in columns  
+df_features["target"] = le_target.fit_transform(df_features["target"])
+df_country["country"] = le_country.fit_transform(df_features["country"])
+df_features["city"] = le_city.fit_transform(df_features["city"])
+df_features["plan"] = le_plan.fit_transform(df_features["plan"])
 
 y = df_features.target
 X = df_features.drop('target', axis=1)

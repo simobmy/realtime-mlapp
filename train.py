@@ -26,7 +26,7 @@ le_city = preprocessing.LabelEncoder()
 le_plan = preprocessing.LabelEncoder() 
 # getting the labels in columns  
 df_features["target"] = le_target.fit_transform(df_features["target"])
-df_country["country"] = le_country.fit_transform(df_features["country"])
+df_features["country"] = le_country.fit_transform(df_features["country"])
 df_features["city"] = le_city.fit_transform(df_features["city"])
 df_features["plan"] = le_plan.fit_transform(df_features["plan"])
 
